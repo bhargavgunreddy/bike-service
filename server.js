@@ -10,9 +10,14 @@ var express = require('express');
 
 // bikeapp contains all the methods of express module
 bikeapp = express();
+bikeapp.use(express.static(__dirname));
+
+bikeapp.get('/home', function(req, res) {
+	console.log("home page -->");
+        res.sendFile(__dirname + '/index.html'); // path must be absolute
+    });
 
 // create a server on port 3000
 bikeapp.listen(3000);
 
-//bikeapp.use(__dirname)
 
