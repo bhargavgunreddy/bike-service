@@ -4,7 +4,8 @@
   "description": "bike-service using react",
   "main": "app.js",
   "scripts": {
-    "test": "run"
+    "go": "node server.js",
+	"prego": "jslint *.js"
   },
   "repository": {
     "type": "git",
@@ -17,6 +18,7 @@
   },
   "homepage": "https://github.com/bhargavgunreddy/bike-service#readme",
   "dependencies": {
-    "express": "^4.14.0"
+    "express": "^4.14.0",
+    "jslint": "^0.10.3"
   }
 }
