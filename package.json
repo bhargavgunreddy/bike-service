@@ -4,10 +4,11 @@
   "description": "bike-service using react",
   "main": "app.js",
   "scripts": {
-    "postlint": "node server.js",
-    "lint": "jslint *.js",
-    "prelint": "concat-cli --files server.js js/test.js -o js/dev.js",
-    "go": "npm run lint"
+    "jslint": "jslint dev/dev.js",
+	"prego": "concat-cli --files js/root.js js/render.js -o build/dev.js",
+	"go": "browserify -g reactify  build/dev.js -o dev/dev.js",
+    "clean": "rm build/*.js",
+    "postgo": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -20,8 +21,16 @@
   },
   "homepage": "https://github.com/bhargavgunreddy/bike-service#readme",
   "dependencies": {
+    "browserify": {
+      "transform": [
+        "reactify"
+      ]
+    },
     "concat-cli": "^4.0.0",
     "express": "^4.14.0",
-    "jslint": "^0.10.3"
+    "jslint": "^0.10.3",
+    "react": "^15.3.1",
+    "react-dom": "^15.3.1",
+    "reactify": "^1.1.1"
   }
 }

@@ -13,7 +13,7 @@ var express = require('express');
 // bikeapp contains all the methods of express module
 var bikeapp = express();
 /*jslint nomen: true*/
-bikeapp.use("/", express.static(__dirname));
+bikeapp.use(express.static(__dirname));
 /*jslint nomen: false*/
 bikeapp.locals.TIMEOUT = 5000;
 bikeapp.locals.PORT = 3000;
