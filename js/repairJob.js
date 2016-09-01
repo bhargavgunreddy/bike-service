@@ -1,21 +1,25 @@
 /* repairJob.js */
 
-var React = require('react');
+import React from 'react';
+import {IndexLink, Link } from 'react-router';
 
-var RepairJobComp = React.createClass({
-	getInitialState: function(){
-		return {}
-	},
-	
-	render: function(){
-		return <form>
-				<table>
+class RepairJobComp extends React.Component{
+	constructor(props){
+		super(props);
+		this.state = {};
+	}
+	render(){
+		return <div>
+			<button><IndexLink to = "/">BACK</IndexLink></button><br/>
+			<form className = "form">
+				<table className = "table">
+				  <tbody className = "table-bordered">
 					<tr>
-						<td><label for = "repairVehicleNum">Vehicle Reg No:</label></td>
+						<td><label htmlFor = "repairVehicleNum">Vehicle Reg No:</label></td>
 						<td><input id = "repairVehicleNum"/></td>
 					</tr>
 					<tr>
-						<td><label for = "repairUnderWarranty"></label></td>
+						<td><label htmlFor = "repairUnderWarranty">Repair under Warranty ?</label></td>
 						<td>
 							<select id = "repairUnderWarranty">
 								<option value = "yes">Yes</option>
@@ -24,7 +28,7 @@ var RepairJobComp = React.createClass({
 						</td>
 					</tr>
 					<tr>
-						<td><label for = "repairOrReplace"></label></td>
+						<td><label htmlFor = "repairOrReplace">Job Type</label></td>
 						<td>
 							<select id = "repairOrReplace">
 								<option value = "repair">Repair</option>
@@ -33,8 +37,8 @@ var RepairJobComp = React.createClass({
 						</td>
 					</tr>
 					<tr>
-						<td><label for = "repairPart">Part to be Repaired</label>
-							<apan>Select Not sure if you are not sure of the cause</label>
+						<td><label htmlFor = "repairPart">Part to be Repaired</label>
+							<span>Select Not sure if you are not sure of the cause</span>
 						</td>
 						<td><select id = "repairPart">
 								<option value = "engine">Engine</option>
@@ -46,16 +50,18 @@ var RepairJobComp = React.createClass({
 							</select></td>
 					</tr>
 					<tr>
-						<td><label for = ""></label></td>
-						<td><input id = ""/></td>
-					</tr>
-					<tr>
-						<td><label for = "repairDesc"> Description </label></td>
+						<td><label htmlFor = "repairDesc"> Description </label></td>
 						<td><textarea id = "repairDesc"></textarea></td>
 					</tr>
+					<tr>
+						<td><button>RESET</button></td>
+						<td><button>SUBMIT</button></td>
+					</tr>
+				  </tbody>
 				</table>
-			</form>;
+			</form>
+		</div>;
 	}
-});
+};
 
-//module.exports = RepairJobComp;
+module.exports = RepairJobComp;

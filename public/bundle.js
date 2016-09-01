@@ -71,11 +71,7 @@
 	// newEle.id = "root1";
 	// document.body.appendChild(newEle);
 
-	_reactDom2.default.render(_react2.default.createElement(
-	  'div',
-	  null,
-	  'REACT COMPONENT'
-	), document.body);
+	//ReactDOM.render(<div>REACT COMPONENT</div>, document.body);
 	_reactDom2.default.render(_react2.default.createElement(_root2.default, null), document.getElementById("root1"));
 
 /***/ },
@@ -21703,7 +21699,7 @@
 /* 174 */
 /***/ function(module, exports) {
 
-	module.exports = "module.exports = \"<!DOCTYPE html>\\r\\n<html>\\r\\n<title> Outer index </title>\\r\\n  <head>\\r\\n  </head>\\r\\n\\r\\n  <body>\\r\\n    <div id=\\\"content\\\">Hi there from index.html\\t</div>\\r\\n\\t<br/>\\r\\n\\t<div id=\\\"root\\\"> Root component index here\\t</div>\\r\\n\\t\\r\\n\\t<div id=\\\"root1\\\"> Root 1 component here\\t</div>\\r\\n\\t\\r\\n\\t<script src=\\\"build/dev.js\\\"></script>\\r\\n  </body>\\r\\n\\r\\n</html>\\r\\n\";";
+	module.exports = "module.exports = \"<!DOCTYPE html>\\r\\n<html>\\r\\n<title> Inner index </title>\\r\\n  <head>\\r\\n  </head>\\r\\n\\r\\n  <body>\\r\\n    <div id=\\\"content\\\">Hi there from inner index.html\\t</div>\\r\\n\\t<br/>\\r\\n\\t<div id=\\\"root\\\"> Root component index here\\t</div>\\r\\n\\t\\r\\n\\t<div id=\\\"root1\\\"> Root 1 component here\\t</div>\\r\\n\\t<script src=\\\"bundle.js\\\"></script>\\r\\n  </body>\\r\\n\\r\\n</html>\\r\\n\";";
 
 /***/ }
 /******/ ]);
