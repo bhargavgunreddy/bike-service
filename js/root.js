@@ -28,7 +28,7 @@ class ParentComp extends React.Component {
 				</div>
 			</div>
 			<div>
-				{this.props.children}
+				{this.props.children && React.cloneElement(this.props.children, {onRemoveTaco: this.handleRemoveTaco})}
 			</div>
 		</div>;
   }

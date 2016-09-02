@@ -43,7 +43,7 @@ class Home extends React.Component {
 render(<Router history={browserHistory}>
 		<Route path='/' component={ParentComp}>
 		  <IndexRoute component={Home} />
-		  <Route path='/repair' component={RepairJobComp} />
+		  <Route path='/repair' component={RepairJobComp} myprop = "Bhargav"/>
 		  <Route path='/service' component={ServiceJobComp} />
 		</Route>
 	  </Router>,

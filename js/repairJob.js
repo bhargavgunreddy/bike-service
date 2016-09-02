@@ -7,12 +7,14 @@ var RepairJobComp = React.createClass({
 	getInititalState: function(){
 		return {}
 	},
+	
 	handleSubmit: function(){
 		console.log("-->", self, this);
 		console.log(this.refs.repairVehicleNum.value, "<-");
 		this.props.handleSubmit();
 	},
 	render: function(){
+		console.log(this.route)
 		return <div>
 			<div className = "form-group">
 				<IndexLink to = "/" className =""><button  type = "button" className = "btn btn-default">BACK</button></IndexLink><br/>
