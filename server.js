@@ -11,7 +11,9 @@
 var express = require('express');
 const path = require('path');
 const webpack = require('webpack');
-//var mongoose = require('mongoose');
+var mongoose = require('mongoose');
+var webpackMiddleware = require('webpack-dev-middleware');
+var webpackHotMiddleware = require('webpack-hot-middleware');
 
 const config = require('./webpack.config.js');
 const compiler = webpack(config);
@@ -30,12 +32,8 @@ const middleware = webpackMiddleware(compiler, {
 var bikeapp = express();
 /*jslint nomen: true*/
 bikeapp.use(middleware);
-bikeapp.use(webpackHotMiddleware(compiler));
+//bikeapp.use(webpackHotMiddleware(compiler));
 
-bikeapp.get('*', function response(req, res) {
-    res.write(middleware.fileSystem.readFileSync(path.join(__dirname, 'dist/index.html')));
-    res.end();
-  });
 
 bikeapp.use(express.static(__dirname));
 /*jslint nomen: false*/
@@ -44,8 +42,22 @@ bikeapp.locals.PORT = 3000;
 
 
 bikeapp.use(webpackHotMiddleware(compiler));
+
+bikeapp.get('*', function response(req, res) {
+	console.log("redirec to home page");
+    res.write(middleware.fileSystem.readFileSync(path.join(__dirname, 'build/index.html')));
+    res.end();
+  });
+
 // db connection to check
-//mongoose.connect('mongodb://localhost/test');
+mongoose.connect('mongodb://localhost/test', function(err, data){
+	// console.log("connected: ", err, data);
+	if(err)
+		console.log(err);
+	else{
+		console.log("connected: ", data);
+	}
+});
 
 // var Cat = mongoose.model('Cat', { name: String });
 
@@ -55,24 +67,6 @@ bikeapp.use(webpackHotMiddleware(compiler));
   // console.log('meow');
 // });
 
-
-/*jslint unparam: true*/
-bikeapp.get('/', function (req, res, next) {
-    console.log("redirect to landing page -->");
-    //res.send("Use /home to redirect to landing page or wait 5 sec to redirect");
-    setTimeout(function () {
-        next();
-    }, bikeapp.locals.TIMEOUT);
-});
-
-
-
-bikeapp.get('/*', function (req, res) {
-    /*jslint nomen: true*/
-    console.log("home page -->", __dirname);
-    res.sendFile(__dirname + '/build/index.html'); // path must be absolute
-    /*jslint nomen: false*/
-});
 
 // create a server on port 3000
 bikeapp.listen(bikeapp.locals.PORT, function () {

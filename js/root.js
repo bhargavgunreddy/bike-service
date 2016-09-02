@@ -12,8 +12,8 @@ class ParentComp extends React.Component {
   render() {
     return <div className = "row">
 			<div className = "col-md-8">
-				<button><Link to = "/repair">REPAIR</Link></button>
-				<button>SERVICE</button>
+				<Link to = "/repair"><button type = "button" className = "btn btn-default">REPAIR</button></Link>
+				<button type = "button" className = "btn btn-default">SERVICE</button>
 			</div>
 			<div className = "col-md-4">
 				<div className = "col-md-6">
@@ -26,6 +26,9 @@ class ParentComp extends React.Component {
 					<br/>
 					<span>5</span>
 				</div>
+			</div>
+			<div>
+				{this.props.children}
 			</div>
 		</div>;
   }

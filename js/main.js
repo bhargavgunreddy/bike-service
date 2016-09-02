@@ -3,26 +3,50 @@
 
 import React from 'react';
 import { ReactDOM, render } from 'react-dom';
-import { Router, Route, Redirect, IndexRedirect, Link, browserHistory } from 'react-router'
+import { Router, Route, Redirect, IndexRedirect, IndexRoute, Link, browserHistory, hashHistory } from 'react-router'
 import ParentComp from './root.js';
 import RepairJobComp from './repairJob.js';
-
-require('./../css/bootstrap.css');
-
+import ServiceJobComp from './serviceJob.js';
 
 
-render((
-  <Router history={browserHistory}>
-    <Route path="/">
-		<IndexRedirect to="/home"/>
-		<Route path="/home" component={ParentComp}/>
-		<Route path="/repair" component={RepairJobComp}/>
-		<Route path="/*" >
-			<Redirect to ="/"/>
+
+require('./../node_modules/bootstrap/dist/css/bootstrap.css');
+require('./../node_modules/font-awesome/css/font-awesome.css');
+
+// render((
+  // <Router history={browserHistory}>
+    // <Route path="/">
+		// <IndexRedirect to="/home"/>
+		// <Route path="/home" component={ParentComp}/>
+		// <Route path="/repair" component={RepairJobComp}/>
+		// <Route path="/*" >
+			// <Redirect to ="/"/>
+		// </Route>
+	// </Route>
+  // </Router>
+// ), document.getElementById('root'));
+
+
+class Home extends React.Component {
+	constructor(props){
+		super(props);
+		this.state = {};
+	}
+  render() {
+    return <div className = "row">
+				CURRENTLY RENDERING HOME
+			</div>;
+  }
+}
+
+
+render(<Router history={browserHistory}>
+		<Route path='/' component={ParentComp}>
+		  <IndexRoute component={Home} />
+		  <Route path='/repair' component={RepairJobComp} />
+		  <Route path='/service' component={ServiceJobComp} />
 		</Route>
-	</Route>
-  </Router>
-), document.getElementById('root'));
-
+	  </Router>,
+  document.getElementById('root'));
 
 

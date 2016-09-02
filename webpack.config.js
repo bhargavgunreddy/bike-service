@@ -35,9 +35,25 @@ module.exports = {
 			loader: "style-loader!css-loader" 
 		},
 		{
-			test: /\.(svg|eot|woff|png|ttf)/,
+		test: /\.(svg|png|ttf|woff|woff2|eot)/,
 			exclude: /node_modules/,
-			loader: 'url-loader?lomot:10000'
+			loader: 'url-loader?limt:10000'
+		},
+		{
+		  test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
+		  loader: "url?limit=10000&mimetype=application/font-woff"
+		}, {
+		  test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
+		  loader: "url?limit=10000&mimetype=application/font-woff"
+		}, {
+		  test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+		  loader: "url?limit=10000&mimetype=application/octet-stream"
+		}, {
+		  test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+		  loader: "file"
+		}, {
+		  test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+		  loader: "url?limit=10000&mimetype=image/svg+xml"
 		}
 		
       ]
