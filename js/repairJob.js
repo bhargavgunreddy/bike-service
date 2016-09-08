@@ -1,6 +1,7 @@
 /* repairJob.js */
 
 import React from 'react';
+import $ from 'jquery';
 import {IndexLink, Link } from 'react-router';
 
 var RepairJobComp = React.createClass({
@@ -9,9 +10,17 @@ var RepairJobComp = React.createClass({
 	},
 	
 	handleSubmit: function(){
-		console.log("-->", self, this);
 		console.log(this.refs.repairVehicleNum.value, "<-");
-		this.props.handleSubmit();
+		this.props.handleSubmit.apply(this);
+	},
+	componentDidMount: function(){
+		$.ajax({ 
+				url: "/rest",
+				method: "GET",
+				data: {type: "REST_CALL"}
+			}).done(function(res){
+				console.log("response is -->", res);
+			});
 	},
 	render: function(){
 		console.log(this.route)

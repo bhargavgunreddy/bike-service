@@ -9,11 +9,15 @@ class ParentComp extends React.Component {
 		super(props);
 		this.state = {};
 	}
+	handleSubmit(){
+		console.log("parent handle submit");
+		console.log(this.refs.repairVehicleNum.value, "<-");
+	}
   render() {
     return <div className = "row">
 			<div className = "col-md-8">
 				<Link to = "/repair"><button type = "button" className = "btn btn-default">REPAIR</button></Link>
-				<button type = "button" className = "btn btn-default">SERVICE</button>
+				<Link to = "/service"><button type = "button" className = "btn btn-default">SERVICE</button></Link>
 			</div>
 			<div className = "col-md-4">
 				<div className = "col-md-6">
@@ -28,7 +32,7 @@ class ParentComp extends React.Component {
 				</div>
 			</div>
 			<div>
-				{this.props.children && React.cloneElement(this.props.children, {onRemoveTaco: this.handleRemoveTaco})}
+				{this.props.children && React.cloneElement(this.props.children, {handleSubmit: this.handleSubmit})}
 			</div>
 		</div>;
   }

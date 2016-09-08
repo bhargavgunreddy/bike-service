@@ -14,6 +14,7 @@ const webpack = require('webpack');
 var mongoose = require('mongoose');
 var webpackMiddleware = require('webpack-dev-middleware');
 var webpackHotMiddleware = require('webpack-hot-middleware');
+var ObjectID = require('mongodb').ObjectID;
 
 const config = require('./webpack.config.js');
 const compiler = webpack(config);
@@ -40,32 +41,48 @@ bikeapp.use(express.static(__dirname));
 bikeapp.locals.TIMEOUT = 5000;
 bikeapp.locals.PORT = 3000;
 
+var connection = mongoose.connect('mongodb://localhost/test', function(err, data){
+  // console.log("connected: ", err, data);
+  if(err)
+    console.log(err);
+  else{
+    console.log("connected: ", data);
+  }
+});
+
+var serviceSchema = mongoose.Schema({ id: Number, regnum: Number, 
+                                    underwarranty: Boolean, jobtype: String, part: String, desc: String });
+var serviceJob = mongoose.model('Servicejob', serviceSchema );
 
 bikeapp.use(webpackHotMiddleware(compiler));
 
-bikeapp.get('*', function response(req, res) {
-	console.log("redirec to home page");
+bikeapp.get('/*', function response(req, res) {
+  console.log("redirec to home from /");
     res.write(middleware.fileSystem.readFileSync(path.join(__dirname, 'build/index.html')));
-    res.end();
+//    res.end();
   });
 
-// db connection to check
-mongoose.connect('mongodb://localhost/test', function(err, data){
-	// console.log("connected: ", err, data);
-	if(err)
-		console.log(err);
-	else{
-		console.log("connected: ", data);
-	}
+
+bikeapp.get('/rest', function response(req, res){
+  console.log("<-- rest call -->");
+  serviceJob.find().exec(function(err, data) {
+    console.log("-->",data);
+    res.send(data);
+  });
+  
 });
+// db connection to check
 
-// var Cat = mongoose.model('Cat', { name: String });
 
-// var kitty = new Cat({ name: 'Zildjian' });
-// kitty.save(function (err) {
-  // if (err) // ...
-  // console.log('meow');
-// });
+ 
+ var serviceRecord = new serviceJob({ _id: new ObjectID(1), regnum: 8325, 
+                                    underwarranty: true, jobtype: "service", part: "na", desc: "General Servicing" });
+ serviceRecord.save(function (err, data) {
+   if (err)
+      console.log('error', err);
+   else
+      console.log('data', data);
+ });
 
 
 // create a server on port 3000

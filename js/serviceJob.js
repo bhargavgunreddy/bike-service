@@ -11,7 +11,8 @@ class ServiceJobComp extends React.Component{
 	render(){
 		return <div>
 			<div className = "form-group">
-				<button  type = "button" className = "btn btn-default"><IndexLink to = "/" className ="">BACK</IndexLink></button><br/>
+				<IndexLink to = "/" className ="">
+					<button  type = "button" className = "btn btn-default">BACK</button></IndexLink><br/>
 			</div>
 			<form className = "form">
 				<table className = "table">
