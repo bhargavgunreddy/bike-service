@@ -1,7 +1,6 @@
 /* repairJob.js */
 
 import React from 'react';
-import utility
 import {IndexLink, Link } from 'react-router';
 
 var RepairJobComp = React.createClass({

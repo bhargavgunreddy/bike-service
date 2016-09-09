@@ -4,7 +4,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
 	entry: {
-		"app": __dirname + "/js/main.js",
+		"app": __dirname + "/js/main.js"
 		
 	},
 	output: {
@@ -60,9 +60,8 @@ module.exports = {
 		title: 'Custom template',
 		template: 'build/index.html', // Load a custom template (ejs by default see the FAQ for details)
 	  }),
-	  new webpack.optimize.CommonsChunkPlugin(
-		/* chunkName= */"app", 
-		/* filename= */"app.bundle.js"),
+	  
+	  
 	  new webpack.optimize.UglifyJsPlugin({
 		  minimize: true,
 		  compress: { warnings: false }

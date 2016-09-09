@@ -9,7 +9,7 @@
 
 // load express module and Router
 var express = require('express');
-
+var fs = require('fs');
 // load utilities
 const path = require('path');
 const webpack = require('webpack');
@@ -88,7 +88,7 @@ userRouter.get('/app', function(req, res) {
     res.end();
 });
 
-userRouter.get('/rest', function(req, res){
+userRouter.post('/rest', function(req, res){
   winston.log('info', 'express route:  rest api : /rest');
   serviceJob.count().exec(function(err, count) {
     winston.log('info', 'mongo db count: ', count);

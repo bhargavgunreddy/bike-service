@@ -30,7 +30,7 @@ require('./../node_modules/font-awesome/css/font-awesome.css');
 render(<Router history={browserHistory}>
 		<Route path='/' component={ParentComp}>
 		   <IndexRedirect to = "/login"/>
-		  <Route path='/login' component={loginComp}/>
+		  <Route path='/login' component={LoginComp}/>
 		  <Route path='/repair' component={RepairJobComp} />
 		  <Route path='/service' component={ServiceJobComp} />
 		</Route>
