@@ -1,7 +1,7 @@
 /* repairJob.js */
 
 import React from 'react';
-import $ from 'jquery';
+import utility
 import {IndexLink, Link } from 'react-router';
 
 var RepairJobComp = React.createClass({
@@ -14,19 +14,13 @@ var RepairJobComp = React.createClass({
 		this.props.handleSubmit.apply(this);
 	},
 	componentDidMount: function(){
-		$.ajax({ 
-				url: "/rest",
-				method: "GET",
-				data: {type: "REST_CALL"}
-			}).done(function(res){
-				console.log("response is -->", res);
-			});
+		
 	},
 	render: function(){
-		console.log(this.route)
+		
 		return <div>
 			<div className = "form-group">
-				<IndexLink to = "/" className =""><button  type = "button" className = "btn btn-default">BACK</button></IndexLink><br/>
+				<IndexLink to = "/app" className =""><button  type = "button" className = "btn btn-default">BACK</button></IndexLink><br/>
 			</div>
 			<form className = "form">
 				<table className = "table">

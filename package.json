@@ -44,7 +44,8 @@
     "url-loader": "^0.5.7",
     "webpack-dev-middleware": "^1.6.1",
     "webpack-hot-middleware": "^2.12.2",
-    "webpack-uglify-js-plugin": "^1.1.9"
+    "webpack-uglify-js-plugin": "^1.1.9",
+    "winston": "^2.2.0"
   },
   "devDependencies": {
     "babel-core": "^6.14.0",
