@@ -16,18 +16,24 @@ utility.makeAjax = function(url, method, data, successCallback, errorCallback){
 			});	
 };
 
-utility.makeAjaxData = function(url, method, data){
-	$.ajax({ 
+utility.makeAjaxData = function(url, method, data, successCallback, errorCallback){
+	console.log("inside makeAjaxData");
+	//var promise = new Promise(function(resolve, reject) {
+		
+			$.ajax({ 
 				url: url,
 				method: method,
+				params: JSON.stringify(data),
 				data: data
 			}).done(function(res){
-				//winston.log('info', 'ajaxCall Success', res);
-				return res;
+				successCallback();
+				//resolve(res);	//winston.log('info', 'ajaxCall Success', res);
 			}).fail(function(err){
-				//winston.log('error', 'ajaxCall failed', err);
-				return err;
+				console.log("error", err);
+						//winston.log('error', 'ajaxCall failed', err);
+				//reject(err);
 			});	
+//});
 }
 
 module.exports = utility;

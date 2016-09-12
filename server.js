@@ -14,6 +14,8 @@ var fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
 var mongoose = require('mongoose');
+var Promise = require('mpromise');
+var bodyParser = require('body-parser');
 
 // logger library 
 var winston = require('winston');
@@ -65,13 +67,19 @@ var connection = mongoose.connect('mongodb://localhost/test', function(err, data
   }
 });
 
+// Define schema and models
 var serviceSchema = mongoose.Schema({ id: Number, regnum: Number, 
                                     underwarranty: Boolean, jobtype: String, part: String, desc: String });
 var serviceJob = mongoose.model('Servicejob', serviceSchema );
+
+var userSchema = mongoose.Schema({ id: Number, name: String, password: String, role: String });
+var userRecord = mongoose.model('user', userSchema );
+
 bikeapp.use(webpackHotMiddleware(compiler));
 
 var userRouter = express.Router();
 
+// Define routes to be used by app
 userRouter.get('/', function (req, res) {
   winston.log('info', 'default express route', req.baseUrl);
   if(req.query.type !== "REST_CALL"){
@@ -90,12 +98,37 @@ userRouter.get('/app', function(req, res) {
 
 userRouter.post('/rest', function(req, res){
   winston.log('info', 'express route:  rest api : /rest');
-  serviceJob.count().exec(function(err, count) {
-    winston.log('info', 'mongo db count: ', count);
-    res.send('count: '+ count);
+  winston.log('info', 'request obj: ', req);
+  winston.log('info', 'req params ', req.body.uname);
+
+
+  
+  var query = userRecord.find({ name: req.body.uname});
+  var promise = query.exec();
+  promise.onFulfill(function( fulfillResp){
+    res.send(fulfillResp ? fulfillResp : null);
+    res.end();
+    console.log("on fulfill->", fulfillResp);
   });
   
+  promise.onReject(function(rejectResp){
+    console.log("on onReject->", rejectResp);
+  });   
+  
+  promise.onResolve(function ( reason) {
+      console.log("resolve ", reason);
+  });
 });
+  //var promise = query.exec();
+  /*promise.then(function(result){
+    winston.log('info', 'promise result: ', result);
+  });
+});*/
+
+// *** Bodyparser will parse the request contents and add it to body parameter
+bikeapp.use(bodyParser.json()); // for parsing application/json
+bikeapp.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+
 
 bikeapp.use(['/', '/app'], userRouter);
 //bikeapp.use('/', router);
@@ -103,21 +136,29 @@ bikeapp.use(['/', '/app'], userRouter);
 
 // Check to insert a record into db
  var ObjectID = require('mongodb').ObjectID;
- var serviceRecord = new serviceJob({ _id: new ObjectID(1), regnum: 8325, 
-                                    underwarranty: true, jobtype: "service", part: "na", desc: "General Servicing" });
- serviceRecord.save(function (err, data) {
-   if (err)
-      winston.log('error', 'error saving record: ', err);
-   else
-      winston.log('info', 'Record saved: ');
- });
-
-
+ var userRecordRef = new userRecord({ _id: new ObjectID(1), name: "Bhargav", role: "admin", password: "password"});
+ 
 // create a server on port 3000
 bikeapp.listen(bikeapp.locals.PORT, function () {
     winston.log('info', 'express server is up on PORT:', bikeapp.locals.PORT);
 });
 /*jslint unparam: false*/
 
+//==================
+//  UTILITY CODE
+//==================
 
-
+/*serviceJob.count().exec(function(err, count) {
+    winston.log('info', 'mongo db count: ', count);
+    res.send('count: '+ count);
+  });*/
+/*var promise = new Promise;
+promise.fulfill(userRecordRef.save());*/
+  var query = userRecordRef.save(function(err, product, numAffected){
+    if(err)
+      console.log("error ", err);
+    else{
+      console.log("saved ", product, " ", numAffected);
+    }
+  });
+  

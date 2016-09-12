@@ -3,11 +3,13 @@
 
 import React from 'react';
 import { ReactDOM, render } from 'react-dom';
-import { Router, Route, Redirect, IndexRedirect, IndexRoute, Link, browserHistory, hashHistory } from 'react-router'
+import { Router, Route, IndexRedirect, browserHistory } from 'react-router'
 import ParentComp from './root.js';
 import RepairJobComp from './repairJob.js';
 import ServiceJobComp from './serviceJob.js';
 import LoginComp from './loginPage.js';
+import HomeComp from './homePage.js';
+
 
 
 require('./../node_modules/bootstrap/dist/css/bootstrap.css');
@@ -31,6 +33,7 @@ render(<Router history={browserHistory}>
 		<Route path='/' component={ParentComp}>
 		   <IndexRedirect to = "/login"/>
 		  <Route path='/login' component={LoginComp}/>
+		  <Route path='/home' component={HomeComp}/>
 		  <Route path='/repair' component={RepairJobComp} />
 		  <Route path='/service' component={ServiceJobComp} />
 		</Route>

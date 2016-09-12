@@ -1,16 +1,24 @@
 /* loginPage.js */
 
-var React = require('react');
-var Utility = require('./utility.js');
-var IndexLink, Link  =  require('react-router');
+import React from 'react';
+import Utility from './utility.js';
 
 
 class loginComp extends React.Component {
-	constructor() {
-	    super();
+	constructor( context) {
+	    super(context);
 		this.state = {
 	      userData: {}
 	    };
+	}
+
+	redirectToMainPage(){
+		console.log("redirection");
+		if(window.location.pathname){
+			this.context.router.replace('/home');
+		}
+		else
+			console.log("error in redirecting url");
 	}
 
 	handleSubmit(){
@@ -20,12 +28,12 @@ class loginComp extends React.Component {
 			pwd: this.refs.password.value
 		};
 		
-		var response = Utility.makeAjaxData('/rest', 'POST', this.state.userData);
-		console.log("-->", response);
+		Utility.makeAjaxData('/rest', 'POST', this.state.userData, this.redirectToMainPage.bind(this));
 	}
 
 	render(){
 		console.log("state-->", this.state);
+		console.log("state-->", this.context);
 		return <div>
 					<div className = "form-group">
 						<form className = "form" name = "loginForm">
@@ -61,5 +69,10 @@ class loginComp extends React.Component {
 				</div>;
 	}
 };
+
+loginComp.contextTypes = {
+  router: React.PropTypes.object.isRequired
+}
+
 
 module.exports = loginComp;

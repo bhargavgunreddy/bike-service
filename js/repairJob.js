@@ -19,7 +19,7 @@ var RepairJobComp = React.createClass({
 		
 		return <div>
 			<div className = "form-group">
-				<IndexLink to = "/app" className =""><button  type = "button" className = "btn btn-default">BACK</button></IndexLink><br/>
+				<IndexLink to = "/" className =""><button  type = "button" className = "btn btn-default">BACK</button></IndexLink><br/>
 			</div>
 			<form className = "form">
 				<table className = "table">
