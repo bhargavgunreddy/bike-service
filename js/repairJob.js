@@ -2,24 +2,31 @@
 
 import React from 'react';
 import {IndexLink, Link } from 'react-router';
+import Utility from './utility.js';
 
-var RepairJobComp = React.createClass({
-	getInititalState: function(){
-		return {}
-	},
-	
-	handleSubmit: function(){
-		console.log(this.refs.repairVehicleNum.value, "<-");
-		this.props.handleSubmit.apply(this);
-	},
-	componentDidMount: function(){
+
+class RepairJobComp extends React.Component{
+	constructor(props, context){
+		super(props);
+		this.state = {};
+	}
+
+	goBack(){
+		this.context.router.goBack(-1);
+	}
+
+	handleSubmit(){
 		
-	},
-	render: function(){
+		//var domRef = React.findDOMNode(this.refs.repairVehicleNum);
+		console.log(this.refs, "<-");
+		this.props.handleSubmit.apply(this);
+	}
+
+	render(){
 		
 		return <div>
 			<div className = "form-group">
-				<IndexLink to = "/" className =""><button  type = "button" className = "btn btn-default">BACK</button></IndexLink><br/>
+				<button  type = "button" className = "btn btn-default" onClick = {this.goBack.bind(this)}>BACK</button><br/>
 			</div>
 			<form className = "form">
 				<table className = "table">
@@ -74,13 +81,17 @@ var RepairJobComp = React.createClass({
 					</tr>
 					<tr className = "form-group">
 						<td><button type = "button" className = "btn btn-default">RESET</button></td>
-						<td><button type = "button" className = "btn btn-default" onClick = {this.handleSubmit}>SUBMIT</button></td>
+						<td><button type = "button" className = "btn btn-default" onClick = {this.handleSubmit.bind(this)}>SUBMIT</button></td>
 					</tr>
 				  </tbody>
 				</table>
 			</form>
 		</div>;
 	}
-});
+};
+
+RepairJobComp.contextTypes = {
+  router: React.PropTypes.object.isRequired
+}
 
 module.exports = RepairJobComp;

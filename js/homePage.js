@@ -2,16 +2,21 @@
 
 import React from 'react';
 import {Link } from 'react-router';
+import Utility from './utility.js';
 
 
 class HomeComp extends React.Component {
-	constructor(props){
+	constructor(props, context){
 		super(props);
 		this.state = {};
 	}
+
+	componentDidMount(){
+		//Utility.makeAjaxData()
+	}
 	
-  render() {
-    return <div className = "row">
+    render() {
+      return <div className = "row">
 			
 			<div className = "col-md-4">
 				<div className = "col-md-6">

@@ -2,17 +2,22 @@
 
 import React from 'react';
 import {IndexLink, Link } from 'react-router';
+import Utility from './utility.js';
 
 class ServiceJobComp extends React.Component{
-	constructor(props){
+	constructor(props, context){
 		super(props);
 		this.state = {};
 	}
+
+	goBack(){
+		this.context.router.goBack(-1);
+	}
+
 	render(){
 		return <div>
 			<div className = "form-group">
-				<IndexLink to = "/" className ="">
-					<button  type = "button" className = "btn btn-default">BACK</button></IndexLink><br/>
+					<button type = "button" className = "btn btn-default" onClick={this.goBack.bind(this)}>BACK</button><br/>
 			</div>
 			<form className = "form">
 				<table className = "table">
@@ -75,5 +80,9 @@ class ServiceJobComp extends React.Component{
 		</div>;
 	}
 };
+
+ServiceJobComp.contextTypes = {
+  router: React.PropTypes.object.isRequired
+}
 
 module.exports = ServiceJobComp;
