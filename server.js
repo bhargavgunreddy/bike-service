@@ -68,15 +68,17 @@ var connection = mongoose.connect('mongodb://localhost/test', function(err, data
 });
 
 // Define schema and models
-var serviceSchema = mongoose.Schema({ id: Number, regnum: Number, 
-                                    underwarranty: Boolean, jobtype: String, part: String, desc: String });
-var serviceJob = mongoose.model('Servicejob', serviceSchema );
 
 var userSchema = mongoose.Schema({ id: Number, name: String, password: String, role: String });
 var userRecord = mongoose.model('user', userSchema );
 
-bikeapp.use(webpackHotMiddleware(compiler));
+var serviceSchema = mongoose.Schema({ id: Number, regnum: Number, status: String, resolution: String,
+                                    underwarranty: Boolean, jobtype: String, part: String, desc: String });
+var serviceJob = mongoose.model('Servicejob', serviceSchema );
 
+// Define schema and models
+
+bikeapp.use(webpackHotMiddleware(compiler));
 var userRouter = express.Router();
 
 // Define routes to be used by app
@@ -103,10 +105,10 @@ userRouter.post('/rest', function(req, res){
 
 
   
-  var query = userRecord.find({ name: req.body.uname});
+  var query = userRecord.find({ name: req.body.uname}).count();
   var promise = query.exec();
   promise.onFulfill(function( fulfillResp){
-    res.send(fulfillResp ? fulfillResp : null);
+    res.send(fulfillResp ? fulfillResp.toString() : null);
     res.end();
     console.log("on fulfill->", fulfillResp);
   });
@@ -135,8 +137,6 @@ bikeapp.use(['/', '/app'], userRouter);
 // db connection to check
 
 // Check to insert a record into db
- var ObjectID = require('mongodb').ObjectID;
- var userRecordRef = new userRecord({ _id: new ObjectID(1), name: "Bhargav", role: "admin", password: "password"});
  
 // create a server on port 3000
 bikeapp.listen(bikeapp.locals.PORT, function () {
@@ -148,17 +148,39 @@ bikeapp.listen(bikeapp.locals.PORT, function () {
 //  UTILITY CODE
 //==================
 
-/*serviceJob.count().exec(function(err, count) {
+
+/*
+var records = [{ id: 1, regnum: "4621", underwarranty: true, jobtype: "repair", 
+        part: "door", desc: "door makes a creaking sound", status: "jobcard", resolution: "" },
+ { id: 2, regnum: "8235", underwarranty: true, jobtype: "repair", 
+        part: "brake", desc: "brake makes shuddering sound", status: "jobcard", resolution: "" },
+ { id: 3, regnum: "6325", underwarranty: true, jobtype: "repar", 
+        part: "horn", desc: "horn does not work", status: "jobcard", resolution: "" },
+ { id: 4, regnum: "6159", underwarranty: true, jobtype: "repar", 
+        part: "wheel", desc: "wheel alignment", status: "jobcard", resolution: "" }]
+
+serviceJob.insertMany(records, function(err, docs){
+  if(err)
+    console.log("error", err);
+  else
+    console.log("docs ",docs);
+});
+
+serviceJob.count().exec(function(err, count) {
     winston.log('info', 'mongo db count: ', count);
     res.send('count: '+ count);
   });*/
 /*var promise = new Promise;
 promise.fulfill(userRecordRef.save());*/
-  var query = userRecordRef.save(function(err, product, numAffected){
+  /*var query = userRecordRef.save(function(err, product, numAffected){
     if(err)
       console.log("error ", err);
     else{
       console.log("saved ", product, " ", numAffected);
     }
-  });
+  });*/
+
+ // var ObjectID = require('mongodb').ObjectID;
+ //var userRecordRef = new userRecord({ _id: new ObjectID(1), name: "Bhargav", role: "admin", password: "password"});
+ 
   

@@ -1,0 +1,35 @@
+html, body{
+	width: 100%;
+	height: 100%;
+}
+
+.container:{
+	width: 100%;
+	height: 100%;	
+}
+
+#id{
+	width: 100%;
+	height: 100%;		
+}
+
+.ticketsCountBanner{
+	height: 20%;
+}
+
+.circle{
+	width: 100px;
+    height: 100px;
+    background: aqua;
+    border-radius: 50px;
+    -webkit-border-radius: 50px;
+    float: left;
+    margin-right: 3%;
+    margin-bottom: 2%;
+    margin-top: 2%;
+    padding: 2%;	
+}
+
+.circleLabel{
+	
+}

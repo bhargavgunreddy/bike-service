@@ -26,6 +26,7 @@ utility.makeAjaxData = function(url, method, data, successCallback, errorCallbac
 				params: JSON.stringify(data),
 				data: data
 			}).done(function(res){
+				if(parseInt(res))
 				successCallback();
 				//resolve(res);	//winston.log('info', 'ajaxCall Success', res);
 			}).fail(function(err){

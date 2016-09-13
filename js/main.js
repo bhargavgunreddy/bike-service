@@ -14,6 +14,7 @@ import HomeComp from './homePage.js';
 
 require('./../node_modules/bootstrap/dist/css/bootstrap.css');
 require('./../node_modules/font-awesome/css/font-awesome.css');
+require('./../css/custom.css');
 
 
 /*class Home extends React.Component {

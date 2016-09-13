@@ -17,31 +17,18 @@ class HomeComp extends React.Component {
 	
     render() {
       return <div className = "row">
-			
-			<div className = "col-md-4">
-				<div className = "col-md-6">
-					<span>Login Successful</span>
-					<br/>
-					<span>23</span>
+				<div className = "col-md-12">
+					<div className = "col-md-2"></div>
+					<div className = "col-md-8">
+						<div className = "col-md-6">
+							<Link to = "/repair"><button type = "button" className = "btn btn-default">REPAIR</button></Link>
+						</div>
+						<div className = "col-md-6">
+							<Link to = "/service"><button type = "button" className = "btn btn-default">SERVICE</button></Link>
+						</div>
+					</div>
+					<div className = "col-md-2"></div>
 				</div>
-				<div className = "col-md-6">
-					<span>List of Tickets Today</span>
-					<br/>
-					<table>
-						<thead>
-							<tr>
-								<th colSpan = "2">List of tickets</th>
-								</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td >1</td>
-								<td >General Servicing</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
 		</div>;
   }
 }
