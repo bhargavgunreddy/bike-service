@@ -13,14 +13,14 @@ class ParentComp extends React.Component {
 	}
 	
 	handleLogin(user){
-		console.log("user stored", user);
+		//console.log("user stored", user);
 		this.state.userObject = user;
 	}
 
 	handleSubmit(userData){
 	//	console.log("handle submit", userData);
 		this.state.userData = userData ? userData : "";
-		console.log("handle submit", userData, this.state.userData);
+		//console.log("handle submit", userData, this.state.userData);
 		
 		Utility.makeAjaxData('/rest', 'POST', this.state.userData, this.redirectToMainPage.bind(this));
 	}
@@ -36,7 +36,7 @@ class ParentComp extends React.Component {
 	}
 
     render() {
-    	console.log("------>> ", this.state.userData);
+    	//console.log("------>> ", this.state.userData);
     return <div className = "row">
 				<div className = "col-md-12 col-sm-12 ticketsCountBanner">
 					<div className = "col-md-8 col-sm-2"></div>
