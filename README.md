@@ -24,11 +24,6 @@ Tech stack:
 9. HTML
 
 
-Mini:
-
-SVG
-
-Credentials
 
 Instructions:
 -------------
