@@ -1,39 +1,27 @@
 /* loginPage.js */
 
 import React from 'react';
-import Utility from './utility.js';
+
 
 
 class loginComp extends React.Component {
-	constructor( context) {
-	    super(context);
-		this.state = {
-	      userData: {}
-	    };
+	constructor(props, context) {
+	    super(props, context);
 	}
 
-	redirectToMainPage(){
-		console.log("redirection");
-		if(window.location.pathname){
-			this.context.router.replace('/home');
-		}
-		else
-			console.log("error in redirecting url");
-	}
-
-	handleSubmit(){
-		console.log("handle submit", this.state);
-		this.state.userData = {
+	handleLoginSubmit(){
+		//console.log("handle submit", this.state);
+		var userData = {
 			uname: this.refs.username.value,
 			pwd: this.refs.password.value
 		};
+		this.props.handleSubmit.apply(this.props.parentScope ,[userData]);
+
 		
-		Utility.makeAjaxData('/rest', 'POST', this.state.userData, this.redirectToMainPage.bind(this));
+		//Utility.makeAjaxData('/rest', 'POST', this.state.userData, this.redirectToMainPage.bind(this));
 	}
 
 	render(){
-		console.log("state-->", this.state);
-		console.log("state-->", this.context);
 		return <div>
 					<div className = "form-group">
 						<form className = "form" name = "loginForm">
@@ -60,7 +48,7 @@ class loginComp extends React.Component {
 								</tr>
 								<tr className = "form-group">
 									<td><button type = "button" className = "btn btn-default">Reset</button></td>
-									<td><button type = "button" className = "btn btn-default login" onClick = {this.handleSubmit.bind(this)}>Login</button></td>
+									<td><button type = "button" className = "btn btn-default login" onClick = {this.handleLoginSubmit.bind(this)}>Login</button></td>
 								</tr>
 							  </tbody>
 							</table>

@@ -4,7 +4,7 @@
 import React from 'react';
 import { ReactDOM, render } from 'react-dom';
 import { Router, Route, IndexRedirect, browserHistory } from 'react-router'
-import ParentComp from './root.js';
+import ParentComp from './parentComp.js';
 import RepairJobComp from './repairJob.js';
 import ServiceJobComp from './serviceJob.js';
 import LoginComp from './loginPage.js';

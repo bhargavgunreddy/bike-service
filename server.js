@@ -17,6 +17,7 @@ var mongoose = require('mongoose');
 var Promise = require('mpromise');
 var bodyParser = require('body-parser');
 
+process.env.NODE_ENV = "production";
 // logger library 
 var winston = require('winston');
 

@@ -60,6 +60,12 @@ module.exports = {
       ]
 	},
 	plugins: [
+	  new webpack.DefinePlugin({
+	  	'proces.env':{
+	  		'NODE_ENV': 'production'
+	  	}
+	  }),
+
 	  new HtmlWebpackPlugin({
 		title: 'Custom template',
 		template: 'build/index.html', // Load a custom template (ejs by default see the FAQ for details)
@@ -69,7 +75,6 @@ module.exports = {
 	  new webpack.optimize.UglifyJsPlugin({
 		  minimize: true,
 		  compress: { warnings: false }
-    })
-	
-  ]
+      })
+	]
 }
