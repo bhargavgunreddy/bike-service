@@ -8,21 +8,28 @@ import Utility from './utility.js';
 class AdminHomeComp extends React.Component {
 	constructor(props, context){
 		super(props);
-		//this.state = {};
+		this.state = {
+			serviceRequests: []
+		};
 	}
 
-	componentDidMount(){
+	goBack(){
+		this.context.router.goBack(-1);
+	}
+
+	componentWillMount(){
 		Utility.makeAjaxData('/getServiceRequests', 'GET', "" ,this.populateData.bind(this));
 	}
 
 	populateData(data){
-		console.log(data);
-		this.serviceRequests = data;
+		console.log("home page Response",data);
+		this.setState({serviceRequests: data});
+		//this.state.serviceRequests = data;
 	}
 
-	buildServiceRows(list){
+	buildServiceRows(list, index){
 
-		return <tr>
+		return <tr key = {list._id}>
 			<td>{list.id}</td>
 			<td>{list.regnum}</td>
 			<td>{list.underWarranty}</td>
@@ -34,28 +41,37 @@ class AdminHomeComp extends React.Component {
 	}
 	
     render() {
-    	console.log("params list", this.serviceRequests);
-      return <div className = "row">
-				<div className = "col-md-12">
+    	//console.log("params list", this.props.userInfo);
+    	var displayComp = this.state.serviceRequests.length > 0 ? 
+    				this.state.serviceRequests.map(this.buildServiceRows) : 
+    				<tr><td colSpan = "5">Great Insights takes time</td></tr>;
+      return <div className = "row adminComp">
+		      	<div className = "col-md-12 fullDimension">
 					<div className = "col-md-2"></div>
-						<table>
+						<table className = "table tablebordered serviceReqTable">
 							<thead>
-								<th>ServiceId</th>
-								<th>Reg Num</th>
-								<th>Warranty</th>
-								<th>Job Type</th>
-								<th>Part</th>
-								<th>Description</th>
-								<th>Status</th>
+								<tr className = "success">
+									<th>ServiceId</th>
+									<th>Reg Num</th>
+									<th>Warranty</th>
+									<th>Job Type</th>
+									<th>Part</th>
+									<th>Description</th>
+									<th>Status</th>
+								</tr>
 							</thead>
 							<tbody>
-								{this.serviceRequests.map(this.buildServiceRows)}
+								{displayComp}
 							</tbody>
 						</table>
 					<div className = "col-md-2"></div>
 				</div>
 		</div>;
   }
+}
+
+AdminHomeComp.contextTypes = {
+  router: React.PropTypes.object.isRequired
 }
 
 

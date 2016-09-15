@@ -21,12 +21,13 @@ class ParentComp extends React.Component {
 	}
 
 	redirectToMainPage(param){
-		console.log("redirection", param, param.role);
+		console.log("redirection", param, param.length);
 		// null check
-		if(param){
-			this.state.userData = param;
-			if(param.role){
-				param.role.toString().trim().toLowerCase() === "admin" ? 
+		if(param.length > 0){
+			this.state.userData = param[0];
+			console.log("redirection", param[0]);
+			if(this.state.userData.role){
+				this.state.userData.role.toString().trim().toLowerCase() === "admin" ? 
 						this.context.router.replace('/admin') : this.context.router.replace('/home');	
 			}else{
 				console.log("No role assigned to user");
@@ -37,7 +38,7 @@ class ParentComp extends React.Component {
 	}
 
     render() {
-    return <div className = "row">
+    return <div className = "row parentComp">
 				<div className = "col-md-12 col-sm-12 ticketsCountBanner">
 					<div className = "col-md-8 col-sm-2"></div>
 					<div className = "col-md-4 col-sm-10">

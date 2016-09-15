@@ -16,9 +16,12 @@ class ServiceJobComp extends React.Component{
 
 	render(){
 		return <div>
-			<div className = "form-group">
-					<button type = "button" className = "btn btn-default" onClick={this.goBack.bind(this)}>BACK</button><br/>
-			</div>
+			<div className = "form-group btn-btn-success col-md-12">
+		      		<div className = "col-md-2"></div>
+					<button  type = "button" className = "btn btn-success col-md-1" 
+							onClick = {this.goBack.bind(this)}>BACK</button><br/>
+					<div className = "col-md-9"></div>
+				</div>
 			<form className = "form">
 				<table className = "table">
 				  <tbody className = "table-bordered">

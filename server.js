@@ -108,9 +108,17 @@ userRouter.get('/getServiceRequests', function(req, res) {
       var query = serviceJob.find();
       var promise = query.exec();
       promise.onFulfill(function( fulfillResp){
-        console.log("on servicereq fulfill->", fulfillResp);
-        res.send(fulfillResp ? fulfillResp.toString() : null);
+        //console.log("on servicereq fulfill->", fulfillResp);
+        res.json(fulfillResp ? fulfillResp : null);
         res.end();
+      });
+
+      promise.onReject(function(rejectResp){
+        console.log("on onReject->", rejectResp);
+      });   
+      
+      promise.onResolve(function ( reason) {
+          //console.log("resolve ", reason);
       });
   });
 
@@ -122,8 +130,8 @@ userRouter.post('/getUserDetails', function(req, res){
     var query = userRecord.find({ name: req.body.uname});
       var promise = query.exec();
       promise.onFulfill(function( fulfillResp){
-        console.log("on rest fulfill->", fulfillResp);
-        res.send(fulfillResp ? fulfillResp : null);
+       // console.log("on rest fulfill->", fulfillResp);
+        res.json(fulfillResp ? fulfillResp : null);
         res.end();
         
       });
