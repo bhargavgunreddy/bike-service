@@ -8,6 +8,7 @@ import ParentComp from './parentComp.js';
 import RepairJobComp from './repairJob.js';
 import ServiceJobComp from './serviceJob.js';
 import LoginComp from './loginPage.js';
+import AdminHomeComp from './adminhomePage.js';
 import HomeComp from './homePage.js';
 
 
@@ -34,6 +35,7 @@ render(<Router history={browserHistory}>
 		<Route path='/' component={ParentComp}>
 		   <IndexRedirect to = "/login"/>
 		  <Route path='/login' component={LoginComp}/>
+		  <Route path='/admin' component={AdminHomeComp}/>
 		  <Route path='/home' component={HomeComp}/>
 		  <Route path='/repair' component={RepairJobComp} />
 		  <Route path='/service' component={ServiceJobComp} />

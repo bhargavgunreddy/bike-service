@@ -12,31 +12,31 @@ class ParentComp extends React.Component {
 		};
 	}
 	
-	handleLogin(user){
-		//console.log("user stored", user);
-		this.state.userObject = user;
-	}
-
 	handleSubmit(userData){
 	//	console.log("handle submit", userData);
 		this.state.userData = userData ? userData : "";
 		//console.log("handle submit", userData, this.state.userData);
 		
-		Utility.makeAjaxData('/rest', 'POST', this.state.userData, this.redirectToMainPage.bind(this));
+		Utility.makeAjaxData('/getUserDetails', 'POST', this.state.userData, this.redirectToMainPage.bind(this));
 	}
 
-	redirectToMainPage(){
-		console.log("redirection");
-		if(window.location.pathname){
-			this.handleLogin();
-			this.context.router.replace('/home');
+	redirectToMainPage(param){
+		console.log("redirection", param, param.role);
+		// null check
+		if(param){
+			this.state.userData = param;
+			if(param.role){
+				param.role.toString().trim().toLowerCase() === "admin" ? 
+						this.context.router.replace('/admin') : this.context.router.replace('/home');	
+			}else{
+				console.log("No role assigned to user");
+			}
 		}
 		else
 			console.log("error in redirecting url");
 	}
 
     render() {
-    	//console.log("------>> ", this.state.userData);
     return <div className = "row">
 				<div className = "col-md-12 col-sm-12 ticketsCountBanner">
 					<div className = "col-md-8 col-sm-2"></div>
@@ -54,7 +54,8 @@ class ParentComp extends React.Component {
 				{this.props.children && React.cloneElement(this.props.children, {
 												handleSubmit: this.handleSubmit,
 												handleLogin: this.handleLogin,
-												parentScope: this
+												parentScope: this,
+												userInfo: this.state.userData
 											})}
 		   </div>;
     }

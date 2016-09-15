@@ -99,28 +99,42 @@ userRouter.get('/app', function(req, res) {
     res.end();
 });
 
-userRouter.post('/rest', function(req, res){
-  winston.log('info', 'express route:  rest api : /rest');
-  winston.log('info', 'request obj: ', req);
-  winston.log('info', 'req params ', req.body.uname);
+// getServiceRequests
+// GET
+userRouter.get('/getServiceRequests', function(req, res) {
+  
+    winston.log('info', 'express route:  rest api : ', req.baseUrl);
 
+      var query = serviceJob.find();
+      var promise = query.exec();
+      promise.onFulfill(function( fulfillResp){
+        console.log("on servicereq fulfill->", fulfillResp);
+        res.send(fulfillResp ? fulfillResp.toString() : null);
+        res.end();
+      });
+  });
 
-  
-  var query = userRecord.find({ name: req.body.uname}).count();
-  var promise = query.exec();
-  promise.onFulfill(function( fulfillResp){
-    res.send(fulfillResp ? fulfillResp.toString() : null);
-    res.end();
-    console.log("on fulfill->", fulfillResp);
-  });
-  
-  promise.onReject(function(rejectResp){
-    console.log("on onReject->", rejectResp);
-  });   
-  
-  promise.onResolve(function ( reason) {
-      console.log("resolve ", reason);
-  });
+// getUserDetails
+// POST
+userRouter.post('/getUserDetails', function(req, res){
+    winston.log('info', 'express route:  rest api : ', req.baseUrl);
+    
+    var query = userRecord.find({ name: req.body.uname});
+      var promise = query.exec();
+      promise.onFulfill(function( fulfillResp){
+        console.log("on rest fulfill->", fulfillResp);
+        res.send(fulfillResp ? fulfillResp : null);
+        res.end();
+        
+      });
+      
+      promise.onReject(function(rejectResp){
+        console.log("on onReject->", rejectResp);
+      });   
+      
+      promise.onResolve(function ( reason) {
+          //console.log("resolve ", reason);
+      });
 });
   //var promise = query.exec();
   /*promise.then(function(result){

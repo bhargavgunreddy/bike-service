@@ -8,25 +8,50 @@ import Utility from './utility.js';
 class AdminHomeComp extends React.Component {
 	constructor(props, context){
 		super(props);
-		this.state = {};
+		//this.state = {};
 	}
 
 	componentDidMount(){
-		//Utility.makeAjaxData()
+		Utility.makeAjaxData('/getServiceRequests', 'GET', "" ,this.populateData.bind(this));
+	}
+
+	populateData(data){
+		console.log(data);
+		this.serviceRequests = data;
+	}
+
+	buildServiceRows(list){
+
+		return <tr>
+			<td>{list.id}</td>
+			<td>{list.regnum}</td>
+			<td>{list.underWarranty}</td>
+			<td>{list.jobtype}</td>
+			<td>{list.part}</td>
+			<td>{list.desc}</td>
+			<td>{list.status}</td>
+		</tr>;
 	}
 	
     render() {
+    	console.log("params list", this.serviceRequests);
       return <div className = "row">
 				<div className = "col-md-12">
 					<div className = "col-md-2"></div>
-					<div className = "col-md-8">
-						<div className = "col-md-6">
-							<Link to = "/repair"><button type = "button" className = "btn btn-default">REPAIR</button></Link>
-						</div>
-						<div className = "col-md-6">
-							<Link to = "/service"><button type = "button" className = "btn btn-default">SERVICE</button></Link>
-						</div>
-					</div>
+						<table>
+							<thead>
+								<th>ServiceId</th>
+								<th>Reg Num</th>
+								<th>Warranty</th>
+								<th>Job Type</th>
+								<th>Part</th>
+								<th>Description</th>
+								<th>Status</th>
+							</thead>
+							<tbody>
+								{this.serviceRequests.map(this.buildServiceRows)}
+							</tbody>
+						</table>
 					<div className = "col-md-2"></div>
 				</div>
 		</div>;
