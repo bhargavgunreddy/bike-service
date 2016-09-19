@@ -1,5 +1,5 @@
 # bike-service
-React based app to demonstrate ease of development with react
+App based on ES6 and ReactJS to demonstrate ease of development with react
 
 Prospective tech stack:
 
