@@ -22,9 +22,13 @@ class AdminHomeComp extends React.Component {
 	}
 
 	populateData(data){
-		console.log("home page Response",data);
+		//console.log("home page Response", data);
 		this.setState({serviceRequests: data});
 		//this.state.serviceRequests = data;
+	}
+
+	handleAssignReq(){
+		console.log("handle assigned request");
 	}
 
 	buildServiceRows(list, index){
@@ -32,18 +36,19 @@ class AdminHomeComp extends React.Component {
 		return <tr key = {list._id}>
 			<td>{list.id}</td>
 			<td>{list.regnum}</td>
-			<td>{list.underWarranty}</td>
+			<td>{list.underwarranty.toString()}</td>
 			<td>{list.jobtype}</td>
 			<td>{list.part}</td>
 			<td>{list.desc}</td>
 			<td>{list.status}</td>
+			<td onClick = {this.handleAssignReq.bind(this)}>ASSIGN</td>
 		</tr>;
 	}
 	
     render() {
     	//console.log("params list", this.props.userInfo);
     	var displayComp = this.state.serviceRequests.length > 0 ? 
-    				this.state.serviceRequests.map(this.buildServiceRows) : 
+    				this.state.serviceRequests.map(this.buildServiceRows.bind(this)) : 
     				<tr><td colSpan = "5">Great Insights takes time</td></tr>;
       return <div className = "row adminComp">
 		      	<div className = "col-md-12 fullDimension">
@@ -58,6 +63,7 @@ class AdminHomeComp extends React.Component {
 									<th>Part</th>
 									<th>Description</th>
 									<th>Status</th>
+									<th>Assign</th>
 								</tr>
 							</thead>
 							<tbody>

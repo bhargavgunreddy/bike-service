@@ -34,7 +34,7 @@ class loginComp extends React.Component {
 											<span className = "input-group-addon">
 												<span className="glyphicon glyphicon-lock"></span>
 											</span>
-											<input ref = "username" className = "form-control" id = "username" />
+											<input ref = "username" type = "text" className = "form-control" id = "username" />
 										</div>
 										</td>
 								</tr>
@@ -43,7 +43,7 @@ class loginComp extends React.Component {
 										<label htmlFor = "password" className = "control-label">Password</label>
 									</td>
 									<td className = "col-md-8">
-											<input ref = "password" className = "form-control" id = "password"/>
+											<input ref = "password" type = "password" className = "form-control" id = "password"/>
 									</td>
 								</tr>
 								<tr className = "form-group">

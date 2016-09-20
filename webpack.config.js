@@ -76,5 +76,11 @@ module.exports = {
 		  minimize: true,
 		  compress: { warnings: false }
       })
-	]
+	],
+
+	externals: {
+	  'react/addons': true,
+	  'react/lib/ExecutionEnvironment': true,
+	  'react/lib/ReactContext': true
+	}
 }

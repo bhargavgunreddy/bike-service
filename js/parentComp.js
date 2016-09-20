@@ -20,12 +20,18 @@ class ParentComp extends React.Component {
 		Utility.makeAjaxData('/getUserDetails', 'POST', this.state.userData, this.redirectToMainPage.bind(this));
 	}
 
+	handleLogout(){
+		console.log("User will be logged out");
+		this.state.userData = {};
+		this.context.router.replace('/login');
+	}
+
 	redirectToMainPage(param){
-		console.log("redirection", param, param.length);
+		//console.log("redirection", param, param.length);
 		// null check
 		if(param.length > 0){
 			this.state.userData = param[0];
-			console.log("redirection", param[0]);
+			//console.log("redirection", param[0]);
 			if(this.state.userData.role){
 				this.state.userData.role.toString().trim().toLowerCase() === "admin" ? 
 						this.context.router.replace('/admin') : this.context.router.replace('/home');	
@@ -38,7 +44,12 @@ class ParentComp extends React.Component {
 	}
 
     render() {
+    	//console.log("->", this.state.userData.role, this.state.userData.role ? "block" : "none" );
+    	var logoutStyle = {"display": this.state.userData.role ? "block" : "none" };
     return <div className = "row parentComp">
+    			<div className = "col-md-12 col-sm-12" style = {logoutStyle}>
+    				<button className = "btn btn-info" onClick = {this.handleLogout.bind(this)}>LOGOUT</button>
+    			</div>
 				<div className = "col-md-12 col-sm-12 ticketsCountBanner">
 					<div className = "col-md-8 col-sm-2"></div>
 					<div className = "col-md-4 col-sm-10">
