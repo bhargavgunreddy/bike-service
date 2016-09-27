@@ -7,7 +7,8 @@
     "jslint": "jslint dev/dev.js",
     "pretest": "webpack ",
     "test": "node server.js",
-    "clean": "rm build/*.js"
+    "clean": "rm build/*.js",
+    "jest": "jest"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,12 @@
   "bugs": {
     "url": "https://github.com/bhargavgunreddy/bike-service/issues"
   },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/es6_test/"
+    ]
+  },
   "homepage": "https://github.com/bhargavgunreddy/bike-service#readme",
   "dependencies": {
     "bootstrap": "^3.3.7",
@@ -26,22 +33,33 @@
         "reactify"
       ]
     },
+    "chai-react": "^3.0.1",
+    "chai-react-element": "^1.0.6",
+    "cheerio": "^0.22.0",
     "concat-cli": "^4.0.0",
     "css-loader": "^0.24.0",
+    "enzyme": "^2.4.1",
     "express": "^4.14.0",
     "file-loader": "^0.9.0",
     "font-awesome": "^4.6.3",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-cli": "^1.2.2",
+    "gulp-react": "^3.1.0",
     "history": "^4.0.0",
     "jquery": "^3.1.0",
     "jslint": "^0.10.3",
+    "karma-webpack": "^1.8.0",
     "mongodb": "^2.2.9",
     "mongoose": "^4.5.10",
     "mpromise": "^0.5.5",
     "path": "^0.12.7",
     "react": "^15.3.1",
+    "react-addons": "^0.9.1-deprecated",
     "react-addons-test-utils": "^15.3.1",
     "react-dom": "^15.3.1",
     "react-router": "^2.7.0",
+    "react-test-renderer": "^15.3.2",
     "reactify": "^1.1.1",
     "sinon": "^1.17.6",
     "sourcemap": "^0.1.0",
@@ -58,9 +76,12 @@
     "babel-loader": "^6.2.5",
     "babel-preset-es2015": "^6.14.0",
     "babel-preset-react": "^6.11.1",
+    "chai": "^3.5.0",
+    "chai-enzyme": "^0.5.1",
     "enzyme": "^2.4.1",
     "html-loader": "^0.4.3",
     "html-webpack-plugin": "^2.22.0",
+    "jest": "^15.1.1",
     "jquery": "^3.1.0",
     "webpack": "^1.13.2",
     "webpack-dev-server": "^1.15.0"

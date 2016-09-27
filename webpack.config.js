@@ -4,7 +4,8 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
 	entry: {
-		"app": __dirname + "/js/main.js"
+		"app": __dirname + "/js/main.js",
+		"test": __dirname + "/test/loginPage.test.js"
 		
 	},
 	output: {
