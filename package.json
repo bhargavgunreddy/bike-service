@@ -5,8 +5,8 @@
   "main": "app.js",
   "scripts": {
     "jslint": "jslint dev/dev.js",
-    "pretest": "webpack ",
-    "test": "node server.js",
+    "preptest": "webpack ",
+    "ptest": "node server.js",
     "clean": "rm build/*.js",
     "jest": "jest"
   },

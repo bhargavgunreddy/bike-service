@@ -12,11 +12,10 @@ class loginComp extends React.Component {
 	handleLoginSubmit(){
 		//console.log("handle submit", this.state);
 		var userData = {
-			uname: this.refs.username.value,
-			pwd: this.refs.password.value
+			uname:  this.refs.username ? this.refs.username.value : "",
+			pwd: this.refs.password ? this.refs.password.value : ""
 		};
 		this.props.handleSubmit.apply(this.props.parentScope ,[userData]);
-
 		
 		//Utility.makeAjaxData('/rest', 'POST', this.state.userData, this.redirectToMainPage.bind(this));
 	}
