@@ -28,4 +28,17 @@ describe(" login component ", ()=>{
 	});
 
 
+	it('check for default value prop', () => {
+  	  	const form  = <button type = "button" className = "btn btn-default">Reset</button>;
+		expect(login.prop('value')).toEqual('default value');
+	});
+	
+
+	it('check for state', () => {
+  	  	const form  = <button type = "button" className = "btn btn-default">Reset</button>;
+		expect(login.state()).toEqual({"abc": "abc"});
+	});
+	
+
+
 });
