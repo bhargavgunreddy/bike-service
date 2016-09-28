@@ -1,4 +1,4 @@
-# REACT + ES6 + React-Router + webpack
+# REACT + ES6 + React-Router + webpack + Jest
 
 App based on ES6 and ReactJS to demonstrate ease of development with react
 
@@ -22,6 +22,8 @@ Tech stack:
 8. CSS
 
 9. HTML
+
+10. Testing with Jest and sinon
 
 
 
