@@ -1,4 +1,4 @@
-# bike-service
+# REACT + ES6 + React-Router + webpack
 
 App based on ES6 and ReactJS to demonstrate ease of development with react
 
