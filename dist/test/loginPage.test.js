@@ -41,4 +41,22 @@ describe(" login component ", function () {
 		);
 		expect(login.contains(form)).toEqual(true);
 	});
+
+	it('check for default value prop', function () {
+		var form = _react2.default.createElement(
+			'button',
+			{ type: 'button', className: 'btn btn-default' },
+			'Reset'
+		);
+		expect(login.prop('value')).toEqual('default value');
+	});
+
+	it('check for state', function () {
+		var form = _react2.default.createElement(
+			'button',
+			{ type: 'button', className: 'btn btn-default' },
+			'Reset'
+		);
+		expect(login.state()).toEqual({ "abc": "abc" });
+	});
 });
