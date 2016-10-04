@@ -18,7 +18,7 @@ html, body{
 
 
 .ticketsCountBanner{
-	height: 20%;
+	height: 35%;
 }
 
 .circle{
@@ -55,6 +55,8 @@ html, body{
 
 .parentComp{
     height: 94%;
+    width: 80%;
+    margin: 1% 5%;
 }
 
 .ticketsCountBanner{
@@ -63,4 +65,12 @@ html, body{
 
 .adminComp{
     height: 60%;
+}
+
+.resetButton{
+    margin-right: 1%;
+}
+
+.loginButton{
+    margin-left: 1%;
 }

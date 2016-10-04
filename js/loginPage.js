@@ -21,7 +21,7 @@ class loginComp extends React.Component {
 	}
 
 	render(){
-		return <div>
+		return <div className = "col-md-12 col-sm-12">
 					<div className = "form-group">
 						<form className = "form" name = "loginForm">
 							<table className = "table">
@@ -46,8 +46,9 @@ class loginComp extends React.Component {
 									</td>
 								</tr>
 								<tr className = "form-group">
-									<td><button type = "button" className = "btn btn-default">Reset</button></td>
-									<td><button type = "button" className = "btn btn-default login" onClick = {this.handleLoginSubmit.bind(this)}>Login</button></td>
+									<td></td>
+									<td><button type = "button" className = "btn btn-default resetButton">Reset</button>
+									<button type = "button" className = "btn btn-default loginButton" onClick = {this.handleLoginSubmit.bind(this)}>Login</button></td>
 								</tr>
 							  </tbody>
 							</table>
